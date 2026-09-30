@@ -57,8 +57,7 @@ for p, r in pages.items():
     title = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', m.group(1))).strip()
     pid = re.search(r'name="productid" value="(\d+)"', s)
     price = re.search(r'id="change_price">\s*([\d,\.]+)', s)
-    blk = re.search(r'<div class="prod-total-price d-flex.*?</div>', s, re.S)
-    mrp = re.search(r'<del>.*?([\d,\.]+)\s*</del>', blk.group(0), re.S) if blk else None
+    mrp = re.search(r'id="off_change_price">\s*([\d,\.]+)', s)
     img = re.search(r'<meta property="og:image" content="([^"]+)"', s)
     imgurl = img.group(1) if img else ''
     local_img = None
@@ -136,6 +135,7 @@ for p, r in pages.items():
         pref = p.rstrip('/') + '/'
         items = [v for k, v in sorted(products.items()) if k.startswith(pref) or p == '/']
         cards = []
+        items = [v for v in items if v['price'] not in ('', '0')]  # live site hides 0-price parent items
         for v in items:
             img = rel(r, v['img']) if v['img'] else v['imgurl']
             mrp = ''
