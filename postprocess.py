@@ -95,7 +95,7 @@ HEAD_INJECT = '''<meta name="robots" content="noindex,nofollow">
 <script>/* TEST COPY safety guard: nothing on this copy can place an order, log in or send a form. */
 (function(){
   var LIVE='https://www.arcsuspension.in';
-  function liveUrl(){var p=location.pathname.replace(/^\\/[^\\/]*\\.github\\.io/,'');p=p.replace(/index\\.html$/,'').replace(/\\.html$/,'');return LIVE+(p||'/');}
+  function liveUrl(){var p=location.pathname.replace(/^\\/arc-com(?=\\/|$)/,'');p=p.replace(/index\\.html$/,'').replace(/\\.html$/,'');return LIVE+(p||'/');}
   function note(){var d=document.getElementById('arc-test-toast');if(!d){d=document.createElement('div');d.id='arc-test-toast';d.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:2147483647;background:#222;color:#fff;padding:10px 16px;border-radius:6px;font:14px/1.4 Arial,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.4)';document.body.appendChild(d);}d.innerHTML='This site is in testing. Opening <b>www.arcsuspension.in</b> for orders and the latest prices&hellip;';d.style.display='block';}
   function goLive(){note();setTimeout(function(){location.href=liveUrl();},1200);}
   var O=XMLHttpRequest.prototype.open,S=XMLHttpRequest.prototype.send;
@@ -130,6 +130,16 @@ strip_patterns = [
     re.compile(r'<meta\s+name="robots"[^>]*>', re.I),
     re.compile(r'<noscript>\s*<iframe[^>]*googletagmanager[^>]*>\s*</iframe>\s*</noscript>', re.I),
 ]
+# old-developer credit / links (footer "Made With ... in India by Surun", any surun.in link, author/generator metas, credit comments)
+dev_patterns = [
+    (re.compile(r'(<div[^>]*class="[^"]*web-intelligence[^"]*"[^>]*>).*?(</div>)', re.I | re.S), r'\1\2'),
+    (re.compile(r'<a[^>]*surun[^>]*>.*?</a>', re.I | re.S), ''),
+    (re.compile(r'<meta\s+name="(author|generator|designer|web_author|copyright)"[^>]*>', re.I), ''),
+    (re.compile(r'<!--(?:(?!-->).)*?(surun|developed by|designed by|powered by)(?:(?!-->).)*?-->', re.I | re.S), ''),
+    (re.compile(r'\b(made with\s*)?(developed|designed|powered|made)\s+(with\s+\S+\s+)?(in india\s+)?by\s+surun\b', re.I), ''),
+    (re.compile(r'https?://(www\.)?surun\.in[^"\'\s<)]*', re.I), '#'),
+    (re.compile(r'\bsurun\b', re.I), ''),
+]
 
 grids = 0
 for p, r in pages.items():
@@ -137,6 +147,8 @@ for p, r in pages.items():
     s = open(fp, encoding='utf-8', errors='replace').read()
     for pat in strip_patterns:
         s = pat.sub('', s)
+    for pat, rep in dev_patterns:
+        s = pat.sub(rep, s)
     # static product grid for catalog pages
     if 'class="row products pro-list-view-row' in s:
         pref = p.rstrip('/') + '/'
@@ -159,9 +171,18 @@ for p, r in pages.items():
     s = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + BANNER, s, count=1, flags=re.I)
     open(fp, 'w', encoding='utf-8').write(s)
 
+for root, _, files in os.walk(OUT):
+    for f in files:
+        if f.endswith(('.css', '.js', '.txt', '.xml', '.json')):
+            fp = os.path.join(root, f)
+            t = open(fp, encoding='utf-8', errors='replace').read(); t2 = t
+            for pat, rep in dev_patterns[3:]:
+                t2 = pat.sub(rep, t2)
+            if t2 != t:
+                open(fp, 'w', encoding='utf-8').write(t2)
 open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(OUT, '.nojekyll'), 'w').write('')
 if os.path.exists(os.path.join(OUT, 'index.html')):
     s = open(os.path.join(OUT, 'index.html'), encoding='utf-8').read()
-    open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(s.replace('<head>', '<head><base href="/">', 1))
+    open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(s.replace('<head>', '<head><base href="%s">' % os.environ.get('BASE_PATH', '/'), 1))
 print(json.dumps(dict(pages=len(pages), products=len(products), grids=grids)))
