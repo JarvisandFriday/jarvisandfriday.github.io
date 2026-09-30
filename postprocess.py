@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Turn a wget mirror of www.arcsuspension.in into a safe, static TEST COPY.
 - noindex meta on every page, robots.txt Disallow: /
-- fixed TEST COPY banner
+- full-width fixed top banner: site in testing, button to www.arcsuspension.in
 - blocks all POST / .php XHR + POST form submits (no orders/enquiries from the copy)
 - cart / wishlist / compare / checkout / pincode buttons -> send user to the real product page on www.arcsuspension.in
 - removes ads/analytics/push/chat scripts
@@ -96,7 +96,7 @@ HEAD_INJECT = '''<meta name="robots" content="noindex,nofollow">
 (function(){
   var LIVE='https://www.arcsuspension.in';
   function liveUrl(){var p=location.pathname.replace(/^\\/[^\\/]*\\.github\\.io/,'');p=p.replace(/index\\.html$/,'').replace(/\\.html$/,'');return LIVE+(p||'/');}
-  function note(){var d=document.getElementById('arc-test-toast');if(!d){d=document.createElement('div');d.id='arc-test-toast';d.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:2147483647;background:#222;color:#fff;padding:10px 16px;border-radius:6px;font:14px/1.4 Arial,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.4)';document.body.appendChild(d);}d.innerHTML='This is a TEST COPY. Opening the live shop <b>www.arcsuspension.in</b> for cart, orders and enquiries&hellip;';d.style.display='block';}
+  function note(){var d=document.getElementById('arc-test-toast');if(!d){d=document.createElement('div');d.id='arc-test-toast';d.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:2147483647;background:#222;color:#fff;padding:10px 16px;border-radius:6px;font:14px/1.4 Arial,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.4)';document.body.appendChild(d);}d.innerHTML='This site is in testing. Opening <b>www.arcsuspension.in</b> for orders and the latest prices&hellip;';d.style.display='block';}
   function goLive(){note();setTimeout(function(){location.href=liveUrl();},1200);}
   var O=XMLHttpRequest.prototype.open,S=XMLHttpRequest.prototype.send;
   XMLHttpRequest.prototype.open=function(m,u){this.__arcBlock=(String(m).toUpperCase()!=='GET')||/\\.php|arcsuspension\\.in/i.test(String(u));return O.apply(this,arguments);};
@@ -112,10 +112,17 @@ HEAD_INJECT = '''<meta name="robots" content="noindex,nofollow">
 })();</script>
 '''
 
-BANNER = ('<div id="arc-test-banner" style="position:fixed;left:8px;bottom:8px;z-index:2147483646;'
-          'background:#c00;color:#fff;font:bold 12px/1.3 Arial,sans-serif;padding:5px 9px;border-radius:4px;'
-          'box-shadow:0 1px 4px rgba(0,0,0,.35);pointer-events:auto">TEST COPY &mdash; live shop: '
-          '<a href="https://www.arcsuspension.in/" style="color:#fff;text-decoration:underline">www.arcsuspension.in</a></div>')
+BANNER = ('<div id="arc-test-banner" role="note" style="position:fixed;top:0;left:0;right:0;width:100%;z-index:2147483646;'
+          'background:#b00000;color:#fff;font:600 14px/1.35 Arial,Helvetica,sans-serif;padding:8px 12px;box-sizing:border-box;'
+          'display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;text-align:center;'
+          'box-shadow:0 2px 6px rgba(0,0,0,.3)">'
+          '<span>This site is in testing. For orders and the latest prices, please visit www.arcsuspension.in</span>'
+          '<a href="https://www.arcsuspension.in" style="display:inline-block;background:#fff;color:#b00000;font-weight:700;'
+          'text-decoration:none;padding:6px 14px;border-radius:4px;white-space:nowrap">Visit www.arcsuspension.in</a></div>'
+          '<script>(function(){function fit(){var b=document.getElementById("arc-test-banner");if(!b)return;var h=b.offsetHeight;'
+          'document.body.style.paddingTop=h+"px";var hd=document.querySelectorAll("header.sticky-top,.sticky-top,.fixed-top");'
+          'for(var i=0;i<hd.length;i++){hd[i].style.top=h+"px";}}fit();window.addEventListener("resize",fit);'
+          'window.addEventListener("load",fit);})();</script>')
 
 strip_patterns = [
     re.compile(r'<script[^>]*src="[^"]*(googlesyndication|googletagmanager|onesignal|tawk\.to|getbutton\.io|google-analytics)[^"]*"[^>]*>\s*</script>', re.I),
@@ -150,7 +157,6 @@ for p, r in pages.items():
         grids += 1
     s = re.sub(r'(<head[^>]*>)', lambda m: m.group(1) + '\n' + HEAD_INJECT, s, count=1, flags=re.I)
     s = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + BANNER, s, count=1, flags=re.I)
-    s = re.sub(r'<title>', '<title>[TEST COPY] ', s, count=1)
     open(fp, 'w', encoding='utf-8').write(s)
 
 open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
