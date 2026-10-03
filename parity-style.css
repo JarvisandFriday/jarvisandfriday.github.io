@@ -1395,3 +1395,168 @@ body.arc-source-parity {
 .arc-source-parity .install-card li {
     margin-bottom: 6px;
 }
+
+/* ============================================================
+   BRAND PHOTO NAVIGATION — Select Your Vehicle
+   Phase 021 — Visual brand-click grid (replaces plain dropdowns)
+   ============================================================ */
+
+.arc-source-parity .brand-photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.arc-source-parity .brand-photo-card {
+    flex: 0 0 calc(25% - 10px);
+    min-width: 100px;
+    cursor: pointer;
+    border: 2px solid #e8e8e8;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    user-select: none;
+}
+
+@media (min-width: 576px) {
+    .arc-source-parity .brand-photo-card {
+        flex: 0 0 calc(16.66% - 10px);
+    }
+}
+@media (min-width: 992px) {
+    .arc-source-parity .brand-photo-card {
+        flex: 0 0 calc(12.5% - 10px);
+    }
+}
+
+.arc-source-parity .brand-photo-card:hover,
+.arc-source-parity .brand-photo-card.active {
+    border-color: #E1271E;
+    box-shadow: 0 2px 10px rgba(225,39,30,0.13);
+}
+
+.arc-source-parity .brand-photo-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 6px 6px;
+    min-height: 70px;
+}
+
+.arc-source-parity .brand-photo-inner img {
+    max-width: 100%;
+    max-height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.arc-source-parity .brand-photo-fallback {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    min-height: 40px;
+}
+
+.arc-source-parity .brand-photo-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    text-align: center;
+    margin-top: 5px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.arc-source-parity .brand-photo-card.active .brand-photo-label {
+    color: #E1271E;
+}
+
+/* Model Panel */
+.arc-source-parity .brand-model-panel {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 12px;
+    animation: fadeSlideIn 0.18s ease;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.arc-source-parity .brand-model-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.arc-source-parity .brand-model-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #888;
+    padding: 0 4px;
+    line-height: 1;
+}
+.arc-source-parity .brand-model-close:hover { color: #E1271E; }
+
+.arc-source-parity .brand-model-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.arc-source-parity .brand-model-group {
+    flex: 0 0 auto;
+}
+
+.arc-source-parity .brand-model-head {
+    font-size: 12px;
+    font-weight: 700;
+    color: #E1271E;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.arc-source-parity .brand-model-gen-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.arc-source-parity .brand-model-gen-list li {
+    margin-bottom: 2px;
+}
+
+.arc-source-parity .brand-model-gen-list a {
+    font-size: 13px;
+    color: #333;
+    display: inline-block;
+    padding: 2px 0;
+    transition: color 0.15s;
+    white-space: nowrap;
+}
+.arc-source-parity .brand-model-gen-list a:hover {
+    color: #E1271E;
+    text-decoration: underline;
+}

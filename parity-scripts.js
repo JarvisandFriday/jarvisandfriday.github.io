@@ -1406,21 +1406,129 @@
         }
     }
 
-    // 7. Safe Commerce Modal / Handoff
-    function initSafeCommerceHandoff() {
-        const commerceTriggers = document.querySelectorAll('.pdp-actions-row a, .pro-thumb-col .thumb-hov-btn a, .pro-thumb-col a[href*="arcsuspension.in"]');
+    // 8. Brand Photo Navigation — Select Your Vehicle
+    function initBrandPhotoNav() {
+        const cards   = document.querySelectorAll('.brand-photo-card');
+        const panel   = document.getElementById('brand-model-panel');
+        const title   = document.getElementById('brand-model-panel-title');
+        const links   = document.getElementById('brand-model-links');
+        const closeBtn= document.getElementById('brand-model-close');
 
-        commerceTriggers.forEach(el => {
-            el.addEventListener("click", (e) => {
-                // Allow normal opening in new tab since all hrefs point to verified arcsuspension.in canonical URLs!
-                // Enforce rel="noopener noreferrer"
-                el.setAttribute("target", "_blank");
-                el.setAttribute("rel", "noopener noreferrer");
+        if (!cards.length || !panel) return;
+
+        // Build a model→[generation] map from SEARCH_CATALOG for a given make
+        function buildModelMap(make) {
+            const map = {}; // modelName → [{label, url}]
+            SEARCH_CATALOG.forEach(function(item) {
+                const itemMake = (item.make || '').toLowerCase().replace(/[-\s]/g, '');
+                const targetMake = make.toLowerCase().replace(/[-\s]/g, '');
+                if (itemMake !== targetMake) return;
+
+                if (item.category === 'Model' && item.model) {
+                    if (!map[item.model]) map[item.model] = [];
+                }
+                if (item.category === 'Generation' && item.model && item.title) {
+                    if (!map[item.model]) map[item.model] = [];
+                    map[item.model].push({ label: item.title, url: item.local_url });
+                }
+            });
+
+            // If a model has no generations, add a direct model link
+            SEARCH_CATALOG.forEach(function(item) {
+                const itemMake = (item.make || '').toLowerCase().replace(/[-\s]/g, '');
+                const targetMake = make.toLowerCase().replace(/[-\s]/g, '');
+                if (itemMake !== targetMake) return;
+                if (item.category === 'Model' && item.model) {
+                    if (!map[item.model] || map[item.model].length === 0) {
+                        map[item.model] = [{ label: item.model, url: item.local_url }];
+                    }
+                }
+            });
+            return map;
+        }
+
+        function showPanel(make) {
+            const map = buildModelMap(make);
+            const models = Object.keys(map);
+
+            if (models.length === 0) {
+                // Fallback: direct catalog link
+                links.innerHTML = '<a href="generation-catalog.html?make=' + encodeURIComponent(make) + '" class="btn-primary" style="padding:6px 16px; font-size:14px;">Browse All ' + escapeHtml(make) + ' Products</a>';
+            } else {
+                links.innerHTML = '';
+                models.forEach(function(model) {
+                    const group = document.createElement('div');
+                    group.className = 'brand-model-group';
+
+                    const head = document.createElement('div');
+                    head.className = 'brand-model-head';
+                    head.textContent = model;
+                    group.appendChild(head);
+
+                    const ul = document.createElement('ul');
+                    ul.className = 'brand-model-gen-list';
+
+                    const gens = map[model];
+                    if (gens.length === 0) {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = 'generation-catalog.html?make=' + encodeURIComponent(make) + '&model=' + encodeURIComponent(model);
+                        a.textContent = model;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    } else {
+                        gens.forEach(function(gen) {
+                            const li = document.createElement('li');
+                            const a = document.createElement('a');
+                            a.href = gen.url;
+                            // Show short label — strip repetitive model name prefix if identical
+                            let lbl = gen.label;
+                            if (lbl.toLowerCase() === model.toLowerCase()) lbl = model;
+                            a.textContent = lbl;
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
+                    }
+                    group.appendChild(ul);
+                    links.appendChild(group);
+                });
+            }
+
+            title.textContent = make + ' — Select Model';
+            panel.style.display = 'block';
+        }
+
+        cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                const make = card.getAttribute('data-make');
+                const isActive = card.classList.contains('active');
+
+                // Deactivate all
+                cards.forEach(function(c) { c.classList.remove('active'); });
+
+                if (isActive) {
+                    panel.style.display = 'none';
+                } else {
+                    card.classList.add('active');
+                    showPanel(make);
+                    // Smooth scroll to panel
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
             });
         });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                panel.style.display = 'none';
+                cards.forEach(function(c) { c.classList.remove('active'); });
+            });
+        }
     }
+
+    initBrandPhotoNav();
 
     function escapeHtml(str) {
         return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 })();
+

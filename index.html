@@ -207,29 +207,84 @@
     <img src="assets/mainslider-218.webp" alt="ARC Suspension Performance Upgrades">
 </div>
 
-<!-- Select Your Vehicle Interactive Section -->
+<!-- Select Your Vehicle — Brand Photo Navigation -->
 <div class="shop-by-category">
     <div class="container">
         <h2>Select Your Vehicle</h2>
-        <div class="vehicle-finder-box">
-            <div class="vehicle-select-group">
-                <select id="vehicle-make-select">
-                    <option value="">Select Make</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Mahindra">Mahindra</option>
-                    <option value="Kia">Kia</option>
-                </select>
-
-                <select id="vehicle-model-select" disabled>
-                    <option value="">Select Model</option>
-                </select>
-
-                <select id="vehicle-gen-select" disabled>
-                    <option value="">Select Generation</option>
-                </select>
-
-                <button id="vehicle-find-btn" class="btn-primary" style="height:42px;">Find Suspension</button>
+        <div class="brand-photo-grid">
+            <!-- Toyota -->
+            <div class="brand-photo-card" data-make="Toyota">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/toyota.png" alt="Toyota" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Toyota</div>
+                    <span class="brand-photo-label">Toyota</span>
+                </div>
             </div>
+            <!-- Mahindra -->
+            <div class="brand-photo-card" data-make="Mahindra">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/mahindra.png" alt="Mahindra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Mahindra</div>
+                    <span class="brand-photo-label">Mahindra</span>
+                </div>
+            </div>
+            <!-- Kia -->
+            <div class="brand-photo-card" data-make="Kia">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/kia.png" alt="Kia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Kia</div>
+                    <span class="brand-photo-label">Kia</span>
+                </div>
+            </div>
+            <!-- Hyundai -->
+            <div class="brand-photo-card" data-make="Hyundai">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/hyundai.png" alt="Hyundai" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Hyundai</div>
+                    <span class="brand-photo-label">Hyundai</span>
+                </div>
+            </div>
+            <!-- Maruti -->
+            <div class="brand-photo-card" data-make="Maruti">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/maruti.png" alt="Maruti Suzuki" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Maruti</div>
+                    <span class="brand-photo-label">Maruti</span>
+                </div>
+            </div>
+            <!-- Ford -->
+            <div class="brand-photo-card" data-make="Ford">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/ford.png" alt="Ford" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Ford</div>
+                    <span class="brand-photo-label">Ford</span>
+                </div>
+            </div>
+            <!-- Honda -->
+            <div class="brand-photo-card" data-make="Honda">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/honda.png" alt="Honda" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Honda</div>
+                    <span class="brand-photo-label">Honda</span>
+                </div>
+            </div>
+            <!-- Tata -->
+            <div class="brand-photo-card" data-make="Tata">
+                <div class="brand-photo-inner">
+                    <img src="https://www.arcsuspension.in/img/projectimage/brand/tata.png" alt="Tata" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="brand-photo-fallback" style="display:none;">Tata</div>
+                    <span class="brand-photo-label">Tata</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Panel — appears on brand click -->
+        <div class="brand-model-panel" id="brand-model-panel" style="display:none;">
+            <div class="brand-model-panel-head">
+                <span id="brand-model-panel-title"></span>
+                <button class="brand-model-close" id="brand-model-close" aria-label="Close">&#x2715;</button>
+            </div>
+            <div class="brand-model-links" id="brand-model-links"></div>
         </div>
     </div>
 </div>
