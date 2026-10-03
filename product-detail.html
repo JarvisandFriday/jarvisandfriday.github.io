@@ -231,158 +231,83 @@
                     <span style="color:#E1271E; font-weight:600;">Engineered &amp; Manufactured by ARC Suspension</span>
                 </div>
 
-                <!-- Guaranteed Vehicle Fitment Confirmation Badge -->
-                <div class="arc-fitment-badge-card">
-                    <div class="fitment-badge-header">
-                        <div class="fitment-status-pill">
-                            <i class="fa fa-check-circle"></i> 100% GUARANTEED DIRECT BOLT-ON FIT
-                        </div>
-                        <div class="fitment-oem-guarantee">
-                            <i class="fa fa-lock"></i> Zero Modification | Zero Drilling | 100% Reversible
-                        </div>
+                <!-- Compact Fitment Confirmation Ribbon -->
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #16a34a; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px;">
+                    <div style="color: #15803d; font-weight: 700; font-size: 13px;">
+                        <i class="fa fa-check-circle mr-1"></i> 100% Guaranteed Direct Bolt-On Fitment
                     </div>
-                    
-                    <div class="fitment-details-grid">
-                        <div class="fitment-col">
-                            <span class="detail-label">Vehicle Platform</span>
-                            <span class="detail-value">Toyota Fortuner 2nd Gen</span>
-                        </div>
-                        <div class="fitment-col">
-                            <span class="detail-label">Model Years</span>
-                            <span class="detail-value font-mono">2016 – 2023</span>
-                        </div>
-                        <div class="fitment-col">
-                            <span class="detail-label">Drivetrain</span>
-                            <span class="detail-value">4x2 (RWD) &amp; 4x4 (4WD)</span>
-                        </div>
-                        <div class="fitment-col">
-                            <span class="detail-label">Rear Architecture</span>
-                            <span class="detail-value highlight-coil">5-Link Coil-Spring (Zero Leaf)</span>
-                        </div>
-                    </div>
-
-                    <div class="fitment-badge-footer">
-                        <span><i class="fa fa-check text-success"></i> Fits factory Toyota mounting brackets using OEM hardware points.</span>
+                    <div style="color: #374151; font-size: 12.5px; margin-top: 2px;">
+                        Toyota Fortuner 2nd Gen (2016–2023) • 4x2 &amp; 4x4 • 5-Link Rear Coil Setup (Zero Leaf Springs). Retains OEM springs.
                     </div>
                 </div>
 
-                <!-- Sticky Purchase & Sandbox Checkout Card -->
-                <aside class="arc-sticky-buy-card" id="arc-buy-card">
-                    <div class="buy-card-header">
-                        <div class="stock-status-badge"><span class="pulse-dot"></span> In Stock (Ichalkaranji Factory)</div>
-                    </div>
-
-                    <!-- Variant Selector Pills -->
-                    <div class="buy-variant-selector">
-                        <label class="variant-group-title">Select Setup Variant:</label>
-                        
-                        <div class="variant-pill-group">
-                            <label class="variant-pill-label">
-                                <input type="radio" name="suspension_variant" value="full_kit_lift" checked data-price="42500" data-variant-name="Full 4-Damper Kit + 1-Inch (25mm) Leveling Lift">
-                                <div class="pill-content">
-                                    <div class="pill-top">
-                                        <span class="pill-name">Full Kit + 25mm Lift</span>
-                                        <span class="pill-tag">Recommended</span>
-                                    </div>
-                                    <span class="pill-desc">4x Heavy-Duty Dampers + CNC Billet Strut Spacers</span>
-                                    <span class="pill-price">₹42,500</span>
-                                </div>
-                            </label>
-
-                            <label class="variant-pill-label">
-                                <input type="radio" name="suspension_variant" value="full_kit_stock" data-price="38500" data-variant-name="Full 4-Damper Kit (Stock Height OEM Replacement)">
-                                <div class="pill-content">
-                                    <div class="pill-top">
-                                        <span class="pill-name">Full Kit (Stock Height)</span>
-                                    </div>
-                                    <span class="pill-desc">2x Front Strut Dampers + 2x Rear Dampers</span>
-                                    <span class="pill-price">₹38,500</span>
-                                </div>
-                            </label>
-
-                            <label class="variant-pill-label">
-                                <input type="radio" name="suspension_variant" value="rear_only" data-price="19800" data-variant-name="Rear Damper Pair Only (Anti-Bounce Tuning)">
-                                <div class="pill-content">
-                                    <div class="pill-top">
-                                        <span class="pill-name">Rear Dampers Only</span>
-                                    </div>
-                                    <span class="pill-desc">2x Heavy-Duty Rear Dampers + Bushing Kit</span>
-                                    <span class="pill-price">₹19,800</span>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Transparent Price Breakdown (Strict Zero-Discount Compliance) -->
-                    <div class="price-breakdown-box">
-                        <div class="price-main-row">
-                            <span class="price-currency">₹</span>
-                            <span class="price-amount" id="display-total-price">42,500</span>
-                            <span class="price-net-note">Net Factory Price</span>
-                        </div>
-                        <div class="price-tax-shipping-strip">
-                            <div class="strip-item"><i class="fa fa-check"></i> Includes 28% GST (Official Tax Invoice Included)</div>
-                            <div class="strip-item"><i class="fa fa-truck"></i> Free Pan-India Express Road/Air Freight</div>
-                            <div class="strip-item"><i class="fa fa-ban"></i> Zero Discounts Applied (Strict Policy Price)</div>
-                        </div>
-                    </div>
-
-                    <!-- Quantity & Action Buttons -->
-                    <div class="buy-actions-wrapper">
-                        <div class="qty-and-checkout-row">
-                            <div class="qty-stepper">
-                                <button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity">-</button>
-                                <input type="number" id="product-qty" value="1" min="1" max="5" readonly>
-                                <button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
-                            </div>
-                            
-                            <!-- Primary Sandbox Trigger Button -->
-                            <button type="button" class="btn-checkout-sandbox" id="btn-razorpay-sandbox">
-                                <i class="fa fa-bolt"></i> Test Sandbox Checkout
-                            </button>
-                        </div>
-
-                        <!-- Secondary Consultation Action (Direct Factory Engineer Chat) -->
-                        <a href="https://api.whatsapp.com/send?phone=+919922099292&text=Hello%20ARC%20Suspension%20Engineering%2C%20I%20am%20reviewing%20the%20Toyota%20Fortuner%202nd%20Gen%20Kit%20(Variant%3A%20Full%20Kit%20%2B%2025mm%20Lift).%20Please%20confirm%20stock%20and%20fitment%20for%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-consult" id="whatsapp-consult-link">
-                            <i class="fa fa-whatsapp"></i> Speak with Factory Suspension Engineer
+                <!-- Compact Purchase Card (Strict arcsuspension.in Parity) -->
+                <div style="background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 20px;">
+                    <!-- Connect on Whatsapp -->
+                    <div class="mb-3">
+                        <a href="https://api.whatsapp.com/send?phone=+919922099292&text=Hi%2C+I+am+interested+in+the+product.+Toyota+Fortuner+ARC+Suspension+Upgrade+Kit" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; background:#25D366; color:#fff; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:700; font-size:13px;">
+                            <i class="fa fa-whatsapp mr-2" style="font-size:18px;"></i> Connect on Whatsapp
                         </a>
                     </div>
 
-                    <!-- Pincode Delivery Check -->
-                    <div class="pdp-pincode-box" style="margin-bottom:14px;">
-                        <label style="font-size:12px; font-weight:700; display:block; margin-bottom:4px; color:#475569;">Delivery Availability &amp; Transit Time</label>
-                        <div class="input-group" style="display:flex; margin-bottom:6px;">
-                            <input type="text" id="pincode-input" class="form-control" placeholder="Enter 6-digit Pincode" maxlength="6" style="height:36px; border:1px solid #CED4DA; border-right:none; border-radius:4px 0 0 4px; padding:4px 10px; font-size:13px; flex:1;">
-                            <button id="pincode-check-btn" type="button" class="btn-primary" style="height:36px; border-radius:0 4px 4px 0; font-size:12.5px; padding:0 14px;">Check</button>
-                        </div>
-                        <div id="pincode-result" style="font-size:11.5px; color:#64748B;">Enter Pincode for estimated express delivery date</div>
+                    <!-- Price Block (Zero-Discount List Price) -->
+                    <div class="d-flex align-items-baseline mb-1">
+                        <span style="font-size: 28px; font-weight: 800; color: #111;">₹42,500</span>
+                        <span class="text-muted ml-2" style="font-size:13px;">(Including 18.00% GST)</span>
+                    </div>
+                    <div class="text-muted mb-3" style="font-size:12px;">
+                        Free Pan-India Express Freight | Standard Manufacturer List Price
                     </div>
 
-                    <!-- Assurance Badges -->
-                    <div class="buy-trust-features">
-                        <div class="trust-badge-item">
-                            <i class="fa fa-clock-o text-danger"></i>
-                            <div>
-                                <strong>Factory Dispatch</strong>
-                                <span>Ships within 24-48 hours from Ichalkaranji plant</span>
-                            </div>
-                        </div>
-                        <div class="trust-badge-item">
-                            <i class="fa fa-shield text-danger"></i>
-                            <div>
-                                <strong>1-Year Replacement Warranty</strong>
-                                <span>Direct manufacturer warranty against leakage or damping drop</span>
-                            </div>
-                        </div>
-                        <div class="trust-badge-item">
-                            <i class="fa fa-map-marker text-danger"></i>
-                            <div>
-                                <strong>Pan-India Fitment Network</strong>
-                                <span>Install at any certified wheel alignment workshop</span>
-                            </div>
+                    <!-- Variant Selection: Full Kit Only (Strict Policy: No Split Pairs) -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-3"><label class="mb-0" style="font-weight:600; font-size:13px;">Variant</label></div>
+                        <div class="col-9">
+                            <span style="display:inline-block; background:#f8f9fa; border:1px solid #ced4da; border-radius:4px; padding:6px 14px; font-size:13px; font-weight:700; color:#222;">
+                                Full Kit (Front &amp; Rear Set)
+                            </span>
                         </div>
                     </div>
-                </aside>
+
+                    <!-- Quantity Selector -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-3"><label class="mb-0" style="font-weight:600; font-size:13px;">Quantity</label></div>
+                        <div class="col-9">
+                            <input type="number" min="1" max="5" value="1" readonly style="width:60px; height:36px; text-align:center; border:1px solid #ced4da; border-radius:4px; font-weight:600;">
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons: Buy Now & Add to Cart -->
+                    <div class="row mb-3" style="margin-left:-5px; margin-right:-5px;">
+                        <div class="col-6 px-1">
+                            <a href="https://www.arcsuspension.in/toyota/fortuner" target="_blank" rel="noopener" class="btn btn-block" style="background:#E1271E; color:#fff; font-weight:700; padding:10px 0; border-radius:4px; font-size:14px; text-align:center; display:block;">
+                                Buy Now
+                            </a>
+                        </div>
+                        <div class="col-6 px-1">
+                            <a href="https://www.arcsuspension.in/toyota/fortuner" target="_blank" rel="noopener" class="btn btn-block" style="background:#fff; color:#222; border:1px solid #222; font-weight:700; padding:10px 0; border-radius:4px; font-size:14px; text-align:center; display:block;">
+                                Add To Cart
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pincode Delivery Check -->
+                    <div style="border-top:1px solid #eee; padding-top:14px; margin-top:14px;">
+                        <label style="font-size:12px; font-weight:600; display:block; margin-bottom:4px; color:#555;">Delivery Option</label>
+                        <div style="display:flex; margin-bottom:4px;">
+                            <input type="text" placeholder="Enter Pincode" maxlength="6" style="height:36px; border:1px solid #ced4da; border-right:none; border-radius:4px 0 0 4px; padding:4px 10px; font-size:13px; flex:1;">
+                            <button type="button" style="height:36px; background:#E1271E; color:#fff; border:none; border-radius:0 4px 4px 0; padding:0 16px; font-size:13px; font-weight:700; cursor:pointer;">Check</button>
+                        </div>
+                        <div style="font-size:11px; color:#888;">Please enter PIN code to check delivery availability</div>
+                    </div>
+
+                    <!-- Trust Points -->
+                    <div style="margin-top:14px; padding-top:12px; border-top:1px solid #eee; font-size:12px; color:#666; line-height:1.6;">
+                        <div><i class="fa fa-truck text-danger" style="width:18px;"></i> Factory dispatch direct from Ichalkaranji plant</div>
+                        <div><i class="fa fa-shield text-danger" style="width:18px;"></i> 40,000 km / 1-Year manufacturer warranty</div>
+                        <div><i class="fa fa-wrench text-danger" style="width:18px;"></i> 100% Direct bolt-on OEM fitment (Zero modification)</div>
+                    </div>
+                </div>
             </div>
         </div>
 

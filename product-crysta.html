@@ -232,66 +232,72 @@
             </div>
         </div>
 
-        <!-- Col Right: Sticky Purchase Card -->
+        <!-- Col Right: Compact Purchase Card (Strict arcsuspension.in Parity) -->
         <div class="col-lg-5 mb-4">
-            <div style="background: #fff; border: 1px solid #ddd; padding: 24px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); position: sticky; top: 90px;">
-                <div style="border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
-                    <span style="background: #e8f5e9; color: #2e7d32; font-weight: 700; font-size: 12px; padding: 3px 8px; border-radius: 3px;">FACTORY DIRECT STOCK</span>
-                    <div style="margin-top: 8px;">
-                        <span style="font-size: 28px; font-weight: 800; color: #111;" id="active-price">₹39,500</span>
-                        <span style="font-size: 13px; color: #666; margin-left: 6px;">Inclusive of all GST & pan-India road freight</span>
-                    </div>
-                    <div style="font-size: 12px; color: #888; margin-top: 4px;">
-                        Absolute Zero Discount Policy strictly enforced. Standard manufacturer list price.
+            <div style="background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                <!-- Connect on Whatsapp -->
+                <div class="mb-3">
+                    <a href="https://api.whatsapp.com/send?phone=+919922099292&text=Hi%2C+I+am+interested+in+the+product.+Toyota+Innova+Crysta+ARC+Suspension+Upgrade+Kit" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; background:#25D366; color:#fff; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:700; font-size:13px;">
+                        <i class="fa fa-whatsapp mr-2" style="font-size:18px;"></i> Connect on Whatsapp
+                    </a>
+                </div>
+
+                <!-- Price Block -->
+                <div class="d-flex align-items-baseline mb-1">
+                    <span style="font-size: 28px; font-weight: 800; color: #111;">₹39,500</span>
+                    <span class="text-muted ml-2" style="font-size:13px;">(Including 18.00% GST)</span>
+                </div>
+                <div class="text-muted mb-3" style="font-size:12px;">
+                    Free Pan-India Express Freight | Standard Manufacturer List Price
+                </div>
+
+                <!-- Variant Selection: Full Kit Only -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-3"><label class="mb-0" style="font-weight:600; font-size:13px;">Variant</label></div>
+                    <div class="col-9">
+                        <span style="display:inline-block; background:#f8f9fa; border:1px solid #ced4da; border-radius:4px; padding:6px 14px; font-size:13px; font-weight:700; color:#222;">
+                            Full Kit (Front &amp; Rear Set)
+                        </span>
                     </div>
                 </div>
 
-                <!-- Setup Variant Selector -->
-                <div style="margin-bottom: 20px;">
-                    <label style="font-size: 13px; font-weight: 700; color: #333; margin-bottom: 8px; display: block;">Select Suspension Configuration:</label>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 2px solid #E1271E; background: #fff5f5; border-radius: 4px; cursor: pointer; margin: 0;">
-                            <div>
-                                <input type="radio" name="crysta-setup" value="full-kit" checked onchange="document.getElementById('active-price').innerText='₹39,500'">
-                                <strong style="font-size: 14px; margin-left: 6px;">Full Kit (Front Struts + Rear Shocks)</strong>
-                                <div style="font-size: 12px; color: #666; margin-left: 20px;">Complete vehicle balance & pitch control</div>
-                            </div>
-                            <strong style="color: #E1271E;">₹39,500</strong>
-                        </label>
-                        <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; margin: 0;">
-                            <div>
-                                <input type="radio" name="crysta-setup" value="front-only" onchange="document.getElementById('active-price').innerText='₹22,500'">
-                                <strong style="font-size: 14px; margin-left: 6px;">Front Struts Only (Pair)</strong>
-                                <div style="font-size: 12px; color: #666; margin-left: 20px;">Controls nose dive under braking</div>
-                            </div>
-                            <strong>₹22,500</strong>
-                        </label>
-                        <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; margin: 0;">
-                            <div>
-                                <input type="radio" name="crysta-setup" value="rear-only" onchange="document.getElementById('active-price').innerText='₹17,000'">
-                                <strong style="font-size: 14px; margin-left: 6px;">Rear Shock Absorbers Only (Pair)</strong>
-                                <div style="font-size: 12px; color: #666; margin-left: 20px;">Controls speed-breaker bounce</div>
-                            </div>
-                            <strong>₹17,000</strong>
-                        </label>
+                <!-- Quantity Selector -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-3"><label class="mb-0" style="font-weight:600; font-size:13px;">Quantity</label></div>
+                    <div class="col-9">
+                        <input type="number" min="1" max="5" value="1" readonly style="width:60px; height:36px; text-align:center; border:1px solid #ced4da; border-radius:4px; font-weight:600;">
                     </div>
                 </div>
 
-                <!-- Purchase / Sandbox Buttons -->
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="https://www.arcsuspension.in/toyota/innova/innova-crysta-2nd-gen-2016-2021/toyota-innova-crysta-arc-suspension-upgrade-kit-front-and-rear-shock-absorber" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="background: #E1271E; border-color: #E1271E; font-weight: 800; font-size: 16px; padding: 12px;">
-                        <i class="fa fa-shopping-cart"></i> BUY DIRECT ON ARCSUSPENSION.IN
-                    </a>
-                    <a href="https://api.whatsapp.com/send?phone=919922099292&text=Hello%20ARC%20Suspension%2C%20I%20want%20to%20consult%20regarding%20the%20Toyota%20Innova%20Crysta%20Suspension%20Kit." target="_blank" rel="noopener" class="btn btn-success btn-block" style="background: #25D366; border-color: #25D366; font-weight: 700; font-size: 14px; padding: 10px;">
-                        <i class="fa fa-whatsapp"></i> Chat with Factory Technician (+91-9922099292)
-                    </a>
+                <!-- Action Buttons: Buy Now & Add to Cart -->
+                <div class="row mb-3" style="margin-left:-5px; margin-right:-5px;">
+                    <div class="col-6 px-1">
+                        <a href="https://www.arcsuspension.in/toyota/innova/innova-crysta-2nd-gen-2016-2021/toyota-innova-crysta-arc-suspension-upgrade-kit-front-and-rear-shock-absorber" target="_blank" rel="noopener" class="btn btn-block" style="background:#E1271E; color:#fff; font-weight:700; padding:10px 0; border-radius:4px; font-size:14px;">
+                            Buy Now
+                        </a>
+                    </div>
+                    <div class="col-6 px-1">
+                        <a href="https://www.arcsuspension.in/toyota/innova/innova-crysta-2nd-gen-2016-2021/toyota-innova-crysta-arc-suspension-upgrade-kit-front-and-rear-shock-absorber" target="_blank" rel="noopener" class="btn btn-block" style="background:#fff; color:#222; border:1px solid #222; font-weight:700; padding:10px 0; border-radius:4px; font-size:14px;">
+                            Add To Cart
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pincode Delivery Check -->
+                <div style="border-top:1px solid #eee; padding-top:14px; margin-top:14px;">
+                    <label style="font-size:12px; font-weight:600; display:block; margin-bottom:4px; color:#555;">Delivery Option</label>
+                    <div style="display:flex; margin-bottom:4px;">
+                        <input type="text" placeholder="Enter Pincode" maxlength="6" style="height:36px; border:1px solid #ced4da; border-right:none; border-radius:4px 0 0 4px; padding:4px 10px; font-size:13px; flex:1;">
+                        <button type="button" style="height:36px; background:#E1271E; color:#fff; border:none; border-radius:0 4px 4px 0; padding:0 16px; font-size:13px; font-weight:700; cursor:pointer;">Check</button>
+                    </div>
+                    <div style="font-size:11px; color:#888;">Please enter PIN code to check delivery availability</div>
                 </div>
 
                 <!-- Trust Points -->
-                <div style="border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px; font-size: 13px; color: #555;">
-                    <div style="margin-bottom: 6px;"><i class="fa fa-truck" style="color: #E1271E; width: 20px;"></i> Express Pan-India Surface Freight Included</div>
-                    <div style="margin-bottom: 6px;"><i class="fa fa-shield" style="color: #E1271E; width: 20px;"></i> 40,000 km / 1-Year Factory Warranty</div>
-                    <div><i class="fa fa-wrench" style="color: #E1271E; width: 20px;"></i> 100% Direct Bolt-On / Standard Alignment Required</div>
+                <div style="margin-top:14px; padding-top:12px; border-top:1px solid #eee; font-size:12px; color:#666; line-height:1.6;">
+                    <div><i class="fa fa-truck text-danger" style="width:18px;"></i> Factory dispatch direct from Ichalkaranji plant</div>
+                    <div><i class="fa fa-shield text-danger" style="width:18px;"></i> 40,000 km / 1-Year manufacturer warranty</div>
+                    <div><i class="fa fa-wrench text-danger" style="width:18px;"></i> 100% Direct bolt-on OEM fitment (Zero modification)</div>
                 </div>
             </div>
         </div>
